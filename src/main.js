@@ -6,7 +6,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuex);
 
-import storeConfig from './storeConfig';
+import storeConfig from './store/index';
 
 const store = new Vuex.Store(storeConfig);
 
