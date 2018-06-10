@@ -33,7 +33,7 @@
                     <button
                      type="button"
                      @click="deleteUser(user)"
-                    >Delete
+                    >DELETE
                     </button>
                 </td>
             </tr>
@@ -80,6 +80,10 @@
         border-collapse: collapse;
         border: 1px solid #eee;
         padding: 0.5em;
+    }
+
+    th {
+        width: 120px;
     }
 
     .buttons-wrapper button {
