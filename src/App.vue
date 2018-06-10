@@ -5,52 +5,45 @@
             <button
              @click="loadUsers"
              type="button"
-            >GET
+            >LOAD
             </button>
 
             <button
              @click="postUser"
              type="button"
-            >POST
+            >ADD
             </button>
         </div>
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr
-             v-for="user in users"
-             :key="user.id"
+
+        <EntityTable :entities="users">
+            <template
+             slot="actions"
+             slot-scope="{entity}"
             >
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>
-                    <button
-                     type="button"
-                     @click="deleteUser(user)"
-                    >DELETE
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <button
+                 type="button"
+                 @click="deleteUser(entity)"
+                >DELETE
+                </button>
+            </template>
+        </EntityTable>
     </div>
 </template>
 
 <script>
+  import EntityTable from './components/EntityTable';
+
   export default {
-    name    : 'app',
-    computed: {
+    name      : 'app',
+    components: {
+      EntityTable,
+    },
+    computed  : {
       users() {
         return this.$store.getters['users'];
       }
     },
-    methods : {
+    methods   : {
       deleteUser(user) {
         return this.$store.dispatch('deleteUser', user)
           .then(() => {
@@ -72,21 +65,7 @@
 </script>
 
 <style scoped>
-    table {
-        margin: 1em;
-    }
-
-    table, thead, tbody, tr, th, td {
-        border-collapse: collapse;
-        border: 1px solid #eee;
-        padding: 0.5em;
-    }
-
-    th {
-        width: 120px;
-    }
-
-    .buttons-wrapper button {
+    button {
         margin-right: 1em;
     }
 </style>
