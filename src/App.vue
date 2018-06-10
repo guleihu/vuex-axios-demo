@@ -4,7 +4,7 @@
             <h1>Users</h1>
             <div class="buttons-wrapper">
                 <button
-                 @click="postUser"
+                 @click="addUser"
                  type="button"
                 >ADD
                 </button>
@@ -28,7 +28,7 @@
             <h1>Orders</h1>
             <div class="buttons-wrapper">
                 <button
-                 @click="postOrder"
+                 @click="addOrder"
                  type="button"
                 >ADD
                 </button>
@@ -79,14 +79,14 @@
       loadUsers() {
         return this.$store.dispatch('users/loadMany');
       },
-      postOrder() {
+      addOrder() {
         const order = {
           name: Date.now(),
         };
 
         return this.$store.dispatch('orders/postOne', order);
       },
-      postUser() {
+      addUser() {
         const user = {
           name: Date.now(),
         };
