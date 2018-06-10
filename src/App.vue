@@ -40,25 +40,25 @@
     },
     computed  : {
       users() {
-        return this.$store.getters['users'];
+        return this.$store.getters['users/entities'];
       }
     },
     methods   : {
       deleteUser(user) {
-        return this.$store.dispatch('deleteUser', user)
+        return this.$store.dispatch('users/deleteOne', user)
           .then(() => {
-            return this.$store.dispatch('loadUsers');
+            return this.$store.dispatch('users/loadMany');
           });
       },
       loadUsers() {
-        return this.$store.dispatch('loadUsers');
+        return this.$store.dispatch('users/loadMany');
       },
       postUser() {
         const user = {
           name: Date.now(),
         };
 
-        return this.$store.dispatch('postUser', user);
+        return this.$store.dispatch('users/postOne', user);
       }
     }
   }
