@@ -63,6 +63,8 @@ export const make = function (resource) {
             resp.data.forEach((entity) => {
               context.commit('entity', entity);
             });
+
+            return Promise.resolve();
           });
       },
       postOne(context, entity) {
@@ -71,6 +73,8 @@ export const make = function (resource) {
         return Axios.post(url, entity)
           .then((resp) => {
             context.commit('entity', resp.data);
+
+            return Promise.resolve();
           });
       },
     },
