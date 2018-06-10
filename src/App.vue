@@ -68,16 +68,10 @@
     },
     methods   : {
       deleteOrder(order) {
-        return this.$store.dispatch('orders/deleteOne', order)
-          .then(() => {
-            return this.$store.dispatch('orders/loadMany');
-          });
+        return this.$store.dispatch('orders/deleteOne', order);
       },
       deleteUser(user) {
-        return this.$store.dispatch('users/deleteOne', user)
-          .then(() => {
-            return this.$store.dispatch('users/loadMany');
-          });
+        return this.$store.dispatch('users/deleteOne', user);
       },
       loadOrders() {
         return this.$store.dispatch('orders/loadMany');

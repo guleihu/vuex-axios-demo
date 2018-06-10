@@ -27,6 +27,9 @@ export const make = function (resource) {
       }
     },
     mutations : {
+      deleteEntity(state, entity) {
+        Vue.delete(state.entities, entity.id);
+      },
       entity(state, entity) {
         const newEntity = Object.assign(
           state.entities[entity.id] || {},
@@ -43,7 +46,12 @@ export const make = function (resource) {
       deleteOne(context, entity) {
         const url = `${baseUrl}/${context.getters.resource}/${entity.id}`;
 
-        return Axios.delete(url);
+        return Axios.delete(url)
+          .then(() => {
+            context.commit('deleteEntity', entity);
+
+            return Promise.resolve();
+          });
       },
       loadMany(context) {
         context.commit('entities', {});
